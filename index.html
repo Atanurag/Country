@@ -1,0 +1,242 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Get Country Details!</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Tiro+Telugu&display=swap');
+
+#flag{
+
+border:none; outline: none;
+
+}
+
+</style> 
+
+
+  </head>
+  <body style="background-color:#d5e6f0">
+    <h4   class=" mt-5 text-center">Get Country Details!</h4>
+
+
+
+
+
+<div class="d-flex mt-5 justify-content-center">
+
+  <div class="col-6 "style="position: relative;
+">
+  
+
+<input type="text" name="" class="form-control"style="width: 100%; border-radius: 33px; font-size: 17px;
+"id="inp"  placeholder="Country Name">
+
+
+<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"style="width: 32px; position: absolute; top: 9%; right: 1%; color: #B9B9B9 ;
+ z-index:999999 ;background-color: white; border-radius: 33px;" onclick="m()">
+  <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+
+  <p style="position:absolute;" id="tr"></p>
+  <p style="position:absolute;top: 191%;" id="time"> </p>
+
+</svg>
+
+</div>
+
+
+
+</div>
+
+
+
+<h2 class=" text-center  mt-5 "style="font-family: 'Tiro Telugu', serif;" id="nam"> </h2> 
+
+
+<div class="container">
+
+ <div class="row">
+    <div class=" text-center col-md-6 " style="border: 1px solid blue  width: 200px">
+      
+<div  class=" text-center mx-auto d-flex align-items-center" style="height: 100%; width: 80%";>
+<img src="http://upload.wikimedia.org/wikipedia/commons/c/ce/Transparent.gif"  style="height: 253px; width: 100% ; " id="flag" border="0">
+</div>
+    </div>
+
+
+    <div class=" col-md-6" style="height: 100%;margin-top: 33px">
+<span style="font-family: 'Tiro Telugu', serif;
+" id="cotteext"> </span>  <img src="" style="height: 43px;" id="arms">
+
+
+
+
+
+<div class="row">
+
+  <div class=" col-md-6 d-flex align-items-center " style="height:50px">
+<p  style="font-family: 'Tiro Telugu', serif; margin-top: 12px" >  <span id="contin" >&nbsp; &nbsp;  </span></p>
+
+ </div>
+
+
+<div class=" col-md-6" style="height:50px">
+<p style="font-family: 'Tiro Telugu', serif;   margin-top: 12px" > <span id="capt" >&nbsp; &nbsp;   </span></p> </div>
+</div>
+
+
+
+<div class="row">
+
+  <div class=" col-md-6" style="height:50px">
+<p style="font-family: 'Tiro Telugu', serif;  margin-top: 12px " > <span id="poplu" >&nbsp; &nbsp;   </span></p> </div>
+
+
+<div class=" col-md-6" style="height: 50px">
+<p style="font-family: 'Tiro Telugu', serif; margin-top: 12px " > <span id="curr" >&nbsp; &nbsp;  </span></p> </div>
+</div>
+
+
+
+
+
+
+<div class="row">
+<p style="font-family: 'Tiro Telugu', serif;" id="noofborders">
+
+<p>
+<span id="bor"> </span></p></p>
+</div>
+
+
+<a href="" style="color: #29ff42" id="loca">
+  <i id="llloc">
+
+</i>
+</a>
+    </div>
+
+
+
+  </div>
+</div>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+<script >
+
+let llloc=document.getElementById('llloc');
+
+let cotteext=document.getElementById('cotteext');
+
+let nam=document.getElementById('nam');
+
+
+let flag=document.getElementById('flag');
+
+
+let arms=document.getElementById('arms');
+
+
+let contin=document.getElementById('contin');
+
+
+let capt=document.getElementById('capt');
+
+let poplu=document.getElementById('poplu');
+let curr=document.getElementById('curr');
+
+
+
+let spaicon=document.getElementById('spaicon');
+
+
+let noofborders=document.getElementById('noofborders');
+let loca=document.getElementById('loca');
+let bor=document.getElementById('bor');
+let a=["l"];
+let b=[];
+
+const m=()=>{
+let inp=document.getElementById('inp').value;
+
+
+
+fetch(`https://restcountries.com/v3.1/name/${inp}?fullText=true`)
+  .then(response => response.json())
+
+  .then((data) =>{ 
+
+    console.log(data,data[0].area)
+
+    nam.innerText=inp+" "+data[0].flag;
+
+
+
+console.log(data,data[0].flag)
+
+
+flag.src=data[0].flags.png
+
+arms.src=data[0].coatOfArms.png
+
+
+contin.innerHTML="Continent: "+ data[0].continents[0]
+
+capt.innerHTML="Capital: "+ data[0].capital[0]
+
+poplu.innerHTML="Population: "+ data[0].population
+
+cotteext.innerText="Coats Of Arms: ";
+
+noofborders.innerText="Name of borders:  ";
+loca.href=data[0].maps.googleMaps
+
+curr.innerHTML="Area: " +data[0].area
+bor.innerHTML=data[0].borders
+
+
+llloc.innerHTML=`<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" height="55px">
+  <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+</svg>`
+
+    })
+
+  .catch((err) =>{ console.error(err)
+
+alert("sorry this is not exist")
+
+  });
+}
+
+var today = new Date();
+var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+
+let o=22+":"+2+":"+5;
+
+if (o==time) {
+console.log("nnnnnnnn");
+
+
+}
+
+console.log(time);
+
+</script>
+
+
+
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
